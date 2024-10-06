@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Generador de Folio</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .container {
+            border: 2px solid #333;
+            padding: 20px;
+            border-radius: 8px;
+            text-align: center;
+        }
+        input {
+            margin: 10px 0;
+            padding: 5px;
+            width: 100%;
+        }
+        button {
+            padding: 10px;
+            border: none;
+            background-color: #4CAF50;
+            color: white;
+            cursor: pointer;
+            border-radius: 4px;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        .folio {
+            margin-top: 20px;
+            font-weight: bold;
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h2>Generador de Folio</h2>
+    <input type="text" id="nombre" placeholder="Ingresa tu nombre completo" required>
+    <input type="text" id="clave" placeholder="Ingresa tu clave" required>
+    <input type="date" id="fecha" required>
+    <button onclick="generarFolio()">Generar Folio</button>
+    
+    <div class="folio" id="resultadoFolio"></div>
+</div>
+
+<script>
+    function generarFolio() {
+        const nombre = document.getElementById('nombre').value.trim();
+        const clave = document.getElementById('clave').value.trim();
+        const fecha = document.getElementById('fecha').value;
+
+        if (nombre && clave && fecha) {
+            const nombreIniciales = nombre.split(' ').map(palabra => palabra[0]).join('');
+            const fechaNumeros = fecha.split('-').join('');
+            const folio = `${nombreIniciales}-${clave}-${fechaNumeros}`;
+
+            document.getElementById('resultadoFolio').innerText = `Folio Generado: ${folio}`;
+        } else {
+            document.getElementById('resultadoFolio').innerText = "Por favor, llena todos los campos.";
+        }
+    }
+</script>
+
+</body>
+</html>
